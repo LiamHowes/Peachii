@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="image/x-icon" href="/Peachii/assets/peach e.svg">
+    <link rel="icon" type="image/x-icon" href="/Peachii/assets/peach-e-icon-color.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <style>
@@ -51,6 +51,7 @@
         display:inline-block;
         transition: 0.5s;
         box-shadow: inset 0px 0px 0px 0px var(--peachii-green-dark);
+        width:fit-content;
     }
     button:hover, .button:hover{
         transition: 0.25s;
@@ -149,6 +150,16 @@
         height:100%;
         width:1px;
         background-color:rgba(var(--text-dark-rgb, 0.25));
+    }
+    section h2{
+        font-size:2em;
+    }
+    a{
+        color:var(--peachii-green-dark);
+        text-decoration:none;
+    }
+    a:hover{
+        text-decoration:underline;
     }
     /* Main Banner Section */
     section#main-banner{
@@ -318,6 +329,84 @@
     #contact{
         background: var(--bg-gradient);
     }
+    #zoho-form{
+        display:grid;
+        grid-template-areas: 
+            'fname lname'
+            'email phone'
+            'website website'
+            'opportunity opportunity'
+            'button button'
+        ;
+        max-width:600px;
+        grid-gap:25px;
+        margin:auto;
+        color:var(--text-dark);
+    }
+    #zoho-form input, #zoho-form textarea{
+        border-radius:20px;
+        padding:10px 15px;
+        background-color:var(--bg-light);
+        min-height:1.5em;
+        border:1px solid var(--text-dark);
+        box-sizing: border-box;
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing: border-box;
+        width:-webkit-fill-available;
+        width:100%;
+        font-size:1em;
+        font-family:inherit;
+    }
+    #zoho-form textarea{
+        resize: vertical;
+        min-height:9em;
+    }
+    #zoho-form label{
+        display:block;
+        font-weight:bold;
+    }
+    #zoho-form label > em{
+        color:var(--peachii-peach);
+    }
+    #contact .fname{
+        grid-area:fname;
+    }
+    #contact .lname{
+        grid-area:lname;
+    }
+    #contact .email{
+        grid-area:email;
+    }
+    #contact .phone{
+        grid-area:phone;
+    }
+    #contact .website{
+        grid-area:website;
+    }
+    #contact .opportunity{
+        grid-area:opportunity;
+    }
+    #contact button[type="submit"]{
+        margin-right:0px;
+        margin-left:auto;
+        grid-area:button;
+    }
+    #contact .contact-info .phone::before,
+    #contact .contact-info .email::before{
+        width:1em;
+        height:1em;
+        display: inline-block;
+        position: relative;
+        top: 5px;
+        margin-right: 10px;
+    }
+    #contact .contact-info .phone::before{
+        content:url('/Peachii/assets/phone.svg');
+    }
+    #contact .contact-info .email::before{
+        content:url('/Peachii/assets/email.svg');
+    }
+
     /* Careers Section */
     #careers h2{
         font-size:1.1em;
@@ -349,6 +438,9 @@
         section:not(#logo-carousel){
             padding:60px 40px; 
         }
+        footer#copyright{
+            padding:5px 40px;
+        }
         #services .grid{
             grid-template-columns: 100px 1fr;
         }
@@ -367,11 +459,36 @@
             display:none;
             content:unset;
         }
-    }
-    @media only screen and (max-width:400px){ /* small mobile devices */
+        .gap-50{
+            gap:25px;
+        }
+        .gap-25{
+            gap:12px;
+        }
+        .row-gap-100{
+            row-gap: 50px;
+        }
         #main-banner .banner-text-area h2{font-size:1.25rem;}
         #main-banner .banner-text-area h3{font-size:1rem;}
         #main-banner .banner-text-area p{font-size:1rem;}
+        #zoho-form{
+            grid-template-areas:
+                'fname'
+                'lname'
+                'email'
+                'phone'
+                'website'
+                'opportunity'
+                'button'
+            ;
+        }
+        .card{
+            width:inherit;
+            text-align:center;
+        }
+        .grid.two-col{
+            grid-template-columns: 1fr;
+        }
     }
 
     /* Animations */
@@ -449,12 +566,12 @@
 
 <section id="main-banner" class="relative">
     <div class="section-wrapper flex flex-column center">
-        <video autoplay muted loop class="absolute" poster="/Peachii/assets/images/video-poster.webp">
-            <source src="/Peachii/assets/videos/pedestrians-taxi-blurred-bg-minv2.mp4" type="video/mp4">
+        <video autoplay muted loop class="absolute" poster="/Peachii/assets/video-poster.webp">
+            <source src="/Peachii/assets/pedestrians-taxi-blurred-bg-minv2.mp4" type="video/mp4">
         </video>
         <div class="after"></div>
         <div class="banner-text-area">
-            <h1 style="margin-top:0px;margin-bottom:100px;"><img src="/Peachii/assets/peachii-white.svg" alt="Peachii" title="Peachii"></h1>
+            <h1 style="margin-top:0px;margin-bottom:100px;"><img src="/Peachii/assets/peachii-logo-white.svg" alt="Peachii" title="Peachii"></h1>
             <h2 class="uppercase">We Bring You The Deals</h2>
             <h3>You never pay until we deliver</h3>
             <hr class="width-half">
@@ -493,7 +610,7 @@
         </div>
         <div>
             <div class="img relative animation">
-                <img src="/Peachii/assets/images/restaurant-min.webp" class="relative block">
+                <img src="/Peachii/assets/restaurant-min.webp" class="relative block">
             </div>
         </div>
     </div>
@@ -560,34 +677,51 @@
 </section>
 
 <section id="contact">
+    <h2 style="text-align:center;">Contact Us</h2>
     <!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
-<form action='https://forms.zohopublic.ca/liamhowes7914gm1/form/PeachiiTest/formperma/AUbr20t9yHcpT1o4hjAaNEODtzZKBaHI-dUMimKGGYI/htmlRecords/submit' name='form' id='form' method='POST' accept-charset='UTF-8' enctype='multipart/form-data'>
-    <input type="hidden" name="zf_referrer_name" value=""><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
-    <input type="hidden" name="zf_redirect_url" value=""><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
-    <input type="hidden" name="zc_gad" value=""><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
-    <h2>Peachii Test</h2>
-    <p></p>
-    <!--Name-->
-    <label> Name 
-    </label>
-    <input type="text" maxlength="255" name="Name_First" fieldType=7 placeholder="" />
-    <label>First Name</label>
-    <input type="text" maxlength="255" name="Name_Last" fieldType=7 placeholder="" />
-    <label>Last Name</label>
-    <!--Email-->
-    <label> Email 
-    </label>
-    <input type="text" maxlength="255" name="Email" value="" fieldType=9 placeholder="" />
-    <!--Phone-->
-    <label> Phone 
-    </label>
-    <input type="text" compname="PhoneNumber" name="PhoneNumber_countrycode" phoneFormat="1" isCountryCodeEnabled=false maxlength="20" value="" fieldType=11 id="international_PhoneNumber_countrycode" placeholder="" />
-    <label>Number</label>
-    <!--Multi Line-->
-    <label> What opportunity are you exploring? 
-    </label>
-    <textarea name="MultiLine" maxlength="65535" placeholder="" ></textarea>
-    <button type="submit"><em>Submit</em></button></form>
+    <form target="_blank" action='https://forms.zohopublic.ca/kevinpea1/form/PeachiiForm/formperma/Cb11WBZhLy_q_fbGe7zHzXtm5jR3TtUMwgXQV-qSfW4/htmlRecords/submit' name='form' id='zoho-form' method='POST' accept-charset='UTF-8' enctype='multipart/form-data'>
+        <input type="hidden" name="zf_referrer_name" value=""><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
+        <input type="hidden" name="zf_redirect_url" value=""><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+        <input type="hidden" name="zc_gad" value=""><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
+        <!--First Name-->
+        <div class="fname">
+            <label>First Name</label>
+            <input type="text" maxlength="255" name="Name_First" fieldType=7/>
+        </div>
+        <!-- Last Name -->
+        <div class="lname">
+            <label>Last Name</label>
+            <input type="text" maxlength="255" name="Name_Last" fieldType=7 />
+        </div>
+        <!--Email-->
+        <div class="email">
+            <label>Email<em>*</em></label>
+            <input type="text" maxlength="255" name="Email" value="" fieldType=9 />
+        </div>
+
+        <!--Phone-->
+        <div class="phone">
+            <label>Phone</label>
+            <input type="text" compname="PhoneNumber" name="PhoneNumber_countrycode" phoneFormat="1" isCountryCodeEnabled=false maxlength="20" value="" fieldType=11 id="international_PhoneNumber_countrycode" />
+        </div>
+
+        <!--Website-->
+        <div class="website">
+            <label>Website</label>
+            <input type="text" maxlength="2083" name="Website" value="" placeholder="" />
+        </div>
+
+        <!--Opportunity-->
+        <div class="opportunity">
+            <label>What opportunity are you exploring?</label>
+            <textarea name="MultiLine" maxlength="65535" placeholder=""></textarea>
+        </div>
+        <button type="submit">Send Email</button>
+    </form>
+    <div class="contact-info flex center gap-50" style="margin-top:40px">
+        <div class="phone"><a href="tel:+18881231234">+1 (888) 123-1234</a></div>
+        <div class="email"><a href="mailto:kevin@peachii.co">kevin@peachii.co</a></div>
+    </div>
 </section>
 
 <section id="careers">
@@ -595,7 +729,7 @@
         <h2>Careers</h2>
         <h3>Join Our Winning Team</h3>
         <p>We are a sales company. Sales is what we do, and winning is in our DNA. If you thrive in a competitive, results-driven environment, we want to hear from you.
-        <br/>Send your resume to <a href="mailto:info@peachii.com">info@peachii.com</a>. Please include your full name and current position in the subject line.</p>
+        <br/>Send your resume to <a href="mailto:kevin@peachii.com">kevin@peachii.com</a>. Please include your full name and current position in the subject line.</p>
     </div>
 </section>
 
